@@ -100,7 +100,6 @@ class customDialog extends HTMLElement {
       bubbles: true,
       composed: true,
     });
-    console.log(ev);
     this.shadowRoot.querySelector("div").dispatchEvent(ev);
   }
 

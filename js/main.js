@@ -6,7 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     overdueWarning();
   });
   document
-    .querySelector("aiting-dialog")
+    .getElementById("custom-dialog-one")
+    .addEventListener("buttonClicked", (ev) => {
+      handleEvent(ev);
+    });
+  document
+    .getElementById("custom-dialog-two")
     .addEventListener("buttonClicked", (ev) => {
       handleEvent(ev);
     });
@@ -19,13 +24,14 @@ function handleEvent(ev) {
   }
 }
 
+//TOFIX: users can start the timer multiple times
 function overdueWarning() {
   const div = document.getElementById("warning");
-  div.style.display = "block";
   let seconds = Math.floor(Math.random() * 60);
   let minutes = Math.floor(Math.random() * 60);
   let hours = Math.floor(Math.random() * 24);
-  let days = Math.floor(Math.random() * 30);
+  let days = Math.floor(Math.random() * 50);
+  div.style.display = "block";
   setInterval(() => {
     seconds++;
     if (seconds === 60) {
