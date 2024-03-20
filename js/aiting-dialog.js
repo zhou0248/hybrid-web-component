@@ -87,6 +87,20 @@ class customDialog extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     let clone = template.content.cloneNode(true);
     shadowRoot.append(clone);
+    this.shadowRoot
+      .getElementById("btn")
+      .addEventListener("click", this.handleClick.bind(this));
+  }
+
+  handleClick() {
+    let ev = new CustomEvent("buttonClicked", {
+      detail: {
+        func: this.action,
+      },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(ev);
   }
 
   static get observedAttributes() {
@@ -119,7 +133,6 @@ class customDialog extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.getElementById("btn").innerText = this.label;
-    this.shadowRoot.getElementById("btn");
     this.shadowRoot
       .querySelector("div")
       .classList.add(this.level, this.level + "-div");
@@ -132,6 +145,13 @@ class customDialog extends HTMLElement {
     this.shadowRoot
       .getElementById("btn")
       .classList.add(this.level, this.level + "-btn");
+  }
+  openDialog() {
+    document.querySelector("aiting-dialog").style.display = "block";
+  }
+
+  closeDialog() {
+    document.querySelector("aiting-dialog").style.display = "none";
   }
 }
 

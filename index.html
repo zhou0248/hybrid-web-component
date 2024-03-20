@@ -15,6 +15,12 @@
     <header><div class="container"><h1>Hybrid Web Component</h1><div></header>
     <main class="container">
       <section class="content">
+        <h3 id="clickable-one"> Click for Some Interesting Content</h3>
+        <div id= "timer"> </div>
+        <aiting-dialog label="Get Back to Study" level="info" action="displayTimer">
+          <h2 slot="title">Why Aren't You Studying?</h2>
+          <p slot="message">Why Aren't You Studying?</p>
+        </aiting-dialog>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. A repellendus itaque praesentium ducimus voluptate magni ullam ipsum magnam officiis, dolor libero ut autem. Nostrum ratione quos libero, quo quas expedita?
           Vero consequuntur odit voluptate exercitationem explicabo quod dignissimos aut quasi blanditiis recusandae, beatae minus rerum libero sunt dolor id. Temporibus distinctio impedit doloremque nesciunt, excepturi ullam suscipit. Eos, aliquam amet.
@@ -23,7 +29,9 @@
           Ratione illum consequatur iure rem dolores voluptatum facere sunt eveniet consequuntur id ad dolor, doloribus dolorum quidem qui quia enim iste totam. Sit consectetur cumque minima vel reprehenderit sunt id.
           Rem eos harum autem tenetur tempore quas ad delectus recusandae sunt sit libero ipsa repudiandae atque quidem voluptatum commodi magnam dicta dolorem aspernatur, soluta nihil obcaecati molestiae. Illo, quam error.
         </p>
-        <aiting-dialog label="Get Back to Study" level="success" action="">
+        <h3 id="clickable-two"> Link to External Website </h3>
+        <div id= "warning"> </div>
+        <aiting-dialog label="Get Back to Study" level="error" action="overdueWarning">
           <h2 slot="title">Why Aren't You Studying?</h2>
           <p slot="message">Why Aren't You Studying?</p>
         </aiting-dialog>
