@@ -149,6 +149,7 @@ class customDialog extends HTMLElement {
   }
   openDialog() {
     this.style.display = "block";
+    this.shadowRoot.getElementById("btn").removeAttribute("disabled");
   }
 
   closeDialog() {

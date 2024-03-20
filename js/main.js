@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const dialogOne = document.getElementById("custom-dialog-one");
-  const dialogTwo = document.getElementById("custom-dialog-two");
   document.getElementById("clickable-one").addEventListener("click", () => {
     dialogOne.openDialog();
+    const div = document.getElementById("timer");
+    hideDisplay(div);
   });
+  const dialogTwo = document.getElementById("custom-dialog-two");
   document.getElementById("clickable-two").addEventListener("click", () => {
     dialogTwo.openDialog();
+    const div = document.getElementById("warning");
+    hideDisplay(div);
   });
 
   dialogOne.addEventListener("click", () => {
@@ -37,12 +41,14 @@ function handleEvent(ev) {
 
 function overdueWarning() {
   const div = document.getElementById("warning");
-  let seconds = Math.floor(Math.random() * 60);
+  let seconds = Math.floor(Math.random() * 60) + 1;
   let minutes = Math.floor(Math.random() * 60);
   let hours = Math.floor(Math.random() * 24);
   let days = Math.floor(Math.random() * 30 + 7);
+  let timepassed = 0;
   div.style.display = "block";
-  setInterval(() => {
+  const timer = setInterval(() => {
+    timepassed++;
     seconds++;
     if (seconds === 60) {
       seconds = 0;
@@ -57,6 +63,12 @@ function overdueWarning() {
       days++;
     }
     div.textContent = `Assignment Overdue: ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+    if (timepassed === 120 || div.style.display === "none") {
+      clearInterval(timer);
+      if (div.style.display !== "none") {
+        hideDisplay(div);
+      }
+    }
   }, 1000);
 }
 
@@ -66,8 +78,10 @@ function displayTimer() {
   let seconds = Math.floor(Math.random() * 60);
   let minutes = Math.floor(Math.random() * 60);
   let hours = Math.floor(Math.random() * 4);
+  let timepassed = 0;
   const timer = setInterval(() => {
     seconds--;
+    timepassed++;
     if (seconds === 0) {
       seconds = 59;
       minutes--;
@@ -77,8 +91,19 @@ function displayTimer() {
       hours--;
     }
     div.textContent = `Assignment due in  ${hours} hours ${minutes} minutes ${seconds} seconds.`;
-    if (minutes === 2) {
+    if (
+      timepassed === 120 ||
+      (hours === 0 && minutes === 0 && seconds === 0) ||
+      div.style.display === "none"
+    ) {
       clearInterval(timer);
+      if (div.style.display !== "none") {
+        hideDisplay(div);
+      }
     }
   }, 1000);
+}
+function hideDisplay(div) {
+  div.textContent = "";
+  div.style.display = "none";
 }
