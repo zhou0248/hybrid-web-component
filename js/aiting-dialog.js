@@ -100,7 +100,8 @@ class customDialog extends HTMLElement {
       bubbles: true,
       composed: true,
     });
-    this.dispatchEvent(ev);
+    console.log(ev);
+    this.shadowRoot.querySelector("div").dispatchEvent(ev);
   }
 
   static get observedAttributes() {

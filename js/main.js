@@ -7,21 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document
     .querySelector("aiting-dialog")
-    .addEventListener("buttonClicked", () => {
-      handleEvent();
+    .addEventListener("buttonClicked", (ev) => {
+      handleEvent(ev);
     });
 });
 
 function handleEvent(ev) {
-  console.log("button clicked");
-  console.log(ev);
-  console.log(ev.detail);
+  let detail = { ...ev.detail };
+  if (detail.func && typeof eval(detail.func) === "function") {
+    eval(detail.func)();
+  }
 }
-//   console.log(ev.detail);
-//   console.log(ev.detail.func);
-//   if (ev.detail.func && typeof eval(ev.detail.func) === "function") {
-//     eval(ev.detail.func)();
-//   }
 
 function overdueWarning() {
   const div = document.getElementById("warning");
