@@ -100,6 +100,7 @@ class customDialog extends HTMLElement {
       bubbles: true,
       composed: true,
     });
+    this.shadowRoot.getElementById("btn").setAttribute("disabled", true);
     this.shadowRoot.querySelector("div").dispatchEvent(ev);
   }
 
@@ -147,11 +148,11 @@ class customDialog extends HTMLElement {
       .classList.add(this.level, this.level + "-btn");
   }
   openDialog() {
-    document.querySelector("aiting-dialog").style.display = "block";
+    this.style.display = "block";
   }
 
   closeDialog() {
-    document.querySelector("aiting-dialog").style.display = "none";
+    this.style.display = "none";
   }
 }
 

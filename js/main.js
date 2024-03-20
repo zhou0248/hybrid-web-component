@@ -1,10 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const dialogOne = document.getElementById("custom-dialog-one");
+  const dialogTwo = document.getElementById("custom-dialog-two");
   document.getElementById("clickable-one").addEventListener("click", () => {
-    displayTimer();
+    dialogOne.openDialog();
   });
   document.getElementById("clickable-two").addEventListener("click", () => {
-    overdueWarning();
+    dialogTwo.openDialog();
   });
+
+  dialogOne.addEventListener("click", () => {
+    dialogOne.closeDialog();
+  });
+
+  dialogTwo.addEventListener("click", () => {
+    dialogTwo.closeDialog();
+  });
+
   document
     .getElementById("custom-dialog-one")
     .addEventListener("buttonClicked", (ev) => {
@@ -24,13 +35,12 @@ function handleEvent(ev) {
   }
 }
 
-//TOFIX: users can start the timer multiple times
 function overdueWarning() {
   const div = document.getElementById("warning");
   let seconds = Math.floor(Math.random() * 60);
   let minutes = Math.floor(Math.random() * 60);
   let hours = Math.floor(Math.random() * 24);
-  let days = Math.floor(Math.random() * 50);
+  let days = Math.floor(Math.random() * 30 + 7);
   div.style.display = "block";
   setInterval(() => {
     seconds++;
@@ -53,16 +63,21 @@ function overdueWarning() {
 function displayTimer() {
   const div = document.getElementById("timer");
   div.style.display = "block";
-  let seconds = 0;
-  let minutes = 0;
+  let seconds = Math.floor(Math.random() * 60);
+  let minutes = Math.floor(Math.random() * 60);
+  let hours = Math.floor(Math.random() * 4);
   const timer = setInterval(() => {
-    seconds++;
-    if (seconds === 60) {
-      seconds = 0;
-      minutes++;
+    seconds--;
+    if (seconds === 0) {
+      seconds = 59;
+      minutes--;
     }
-    div.textContent = `You have been distracted for ${minutes} minutes ${seconds} seconds.`;
-    if (minutes === 15) {
+    if (minutes === 0) {
+      minutes = 59;
+      hours--;
+    }
+    div.textContent = `Assignment due in  ${hours} hours ${minutes} minutes ${seconds} seconds.`;
+    if (minutes === 2) {
       clearInterval(timer);
     }
   }, 1000);
